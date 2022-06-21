@@ -1,0 +1,11 @@
+devo logar primeiro
+1- inserir conta.
+2- alterar conta.
+3- inserir conta com mesmo nome.
+4- inserir movimentação.
+5- campos obrigatórios da movimentação.
+6- movimentação futura.
+7- remover movimentação.
+8- remover conta com movimentação.
+9- saldo das contas.
+10- resumo mensal - entrar na tela e verificar o título.
