@@ -27,6 +27,11 @@ public class BasePage {
 	public String pegarValue(String id_campo) {
 		return getDriver().findElement(By.id(id_campo)).getAttribute("value");
 	}
+	
+	public String pegarValueXpath(String xpath) {
+		return getDriver().findElement(By.xpath(xpath)).getAttribute("value");
+	}
+	
 	public String pegarTexto(String id_campo) {
 		return getDriver().findElement(By.id(id_campo)).getText();
 	}

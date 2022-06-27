@@ -30,6 +30,8 @@ public class MovimentacaoTest extends BaseTest {
 		page.clicarComXpath("//button[.='Salvar']");
 		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), "Movimentação adicionada com sucesso!");
 		pageConta.removerConta("Conta Movimentação");
+		page.acessarPaginaResumo();
+		page.excluirMovimentacao("Descrição primeiro movimento", "Conta Movimentação");
 	}
 	
 	@Test
@@ -63,7 +65,27 @@ public class MovimentacaoTest extends BaseTest {
 		pageConta.removerConta("Conta Movimentação");
 	}
 	
-	//NÃO TA PRONTO
+	@Test
+	public void remover_conta_com_movimentacao() {
+		pageConta.acessarPaginaAdicionar();
+		pageConta.inserirConta("Conta Movimentação");
+		page.acessarPaginaMovimentacao();
+		page.pegarSelectComValue("tipo", "DESP");
+		page.escrever("data_transacao", "07/06/2022");
+		page.escrever("data_pagamento", "20/06/2022");
+		page.escrever("descricao", "Descrição aleatoria movimento");
+		page.escrever("interessado", "Pessoa interessada");
+		page.escrever("valor", "1000");
+		page.pegarSelectComText("conta", "Conta Movimentação");
+		page.clicarElemento("status_pago");
+		page.clicarComXpath("//button[.='Salvar']");
+		pageConta.removerConta("Conta Movimentação");
+		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), "Conta em uso na movimentações");
+		page.acessarPaginaResumo();
+		page.excluirMovimentacao("Descrição aleatoria movimento", "Conta Movimentação");
+		pageConta.removerConta("Conta Movimentação");
+	}
+	
 	@Test
 	public void remover_movimentacao() {
 		pageConta.acessarPaginaAdicionar();
@@ -72,12 +94,19 @@ public class MovimentacaoTest extends BaseTest {
 		page.pegarSelectComValue("tipo", "DESP");
 		page.escrever("data_transacao", "07/06/2022");
 		page.escrever("data_pagamento", "20/06/2022");
-		page.escrever("descricao", "Descrição primeiro movimento");
+		page.escrever("descricao", "Descrição movimento");
 		page.escrever("interessado", "Pessoa interessada");
 		page.escrever("valor", "1000");
 		page.pegarSelectComText("conta", "Conta Movimentação");
 		page.clicarElemento("status_pago");
 		page.clicarComXpath("//button[.='Salvar']");
-		pageConta.removerConta("Conta Movimentação");
+		page.acessarPaginaResumo();
+		page.excluirMovimentacao("Descrição movimento", "Conta Movimentação");
+	}
+	
+	@Test
+	public void validar_tela_resumo() {
+		page.acessarPaginaResumo();
+		Assert.assertEquals(page.pegarValueXpath("//input[@type='submit']"), "Buscar");
 	}
 }

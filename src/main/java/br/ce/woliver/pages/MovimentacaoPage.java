@@ -13,9 +13,17 @@ public class MovimentacaoPage extends BasePage {
 		clicarComXpath("//a[.='Listar']");
 	}
 	
+	public void acessarPaginaResumo() {
+		clicarComXpath("//a[.='Resumo Mensal']");
+	}
+	
 	public void inserirConta(String nomeConta) {
 		escrever("nome", nomeConta);
 		clicarComXpath("//button[.='Salvar']");
+	}
+	
+	public void excluirMovimentacao(String desc, String conta) {
+		clicarComXpath("//tr[td='" + desc + "'and td='" + conta + "']//a");
 	}
 	
 	public void alterarConta(String novoNome) {
