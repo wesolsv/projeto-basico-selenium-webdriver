@@ -109,7 +109,6 @@ public class MovimentacaoTest extends BaseTest {
 		Assert.assertEquals(page.pegarValueXpath("//input[@type='submit']"), "Buscar");
 	}
 	
-	// Em andamento
 	@Test
 	public void validar_saldo_conta() {
 		pageConta.acessarPaginaAdicionar();
@@ -129,9 +128,10 @@ public class MovimentacaoTest extends BaseTest {
 		}
 		page.clicarComXpath("//li[.='Home']");
 		Assert.assertEquals(page.pegarTextoXpath("//tr[td='Conta Movimentação']//td[2]"), "3003.00");
-//		for(int i = 0; i <= 2; i++) {
-//			page.acessarPaginaResumo();
-//			page.excluirMovimentacao("Descrição movimento", "Conta Movimentação");
-//		}
+		for(int i = 0; i <= 2; i++) {
+			page.acessarPaginaResumo();
+			page.excluirMovimentacao("Descrição primeiro movimento", "Conta Movimentação");
+		}
+		pageConta.removerConta("Conta Movimentação");
 	}
 }
