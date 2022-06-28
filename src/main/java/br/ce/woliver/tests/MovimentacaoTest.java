@@ -1,5 +1,4 @@
 package br.ce.woliver.tests;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -19,14 +18,14 @@ public class MovimentacaoTest extends BaseTest {
 		pageConta.acessarPaginaAdicionar();
 		pageConta.inserirConta("Conta Movimentação");
 		page.acessarPaginaMovimentacao();
-		page.pegarSelectComValue("tipo", "DESP");
+		page.pegarSelectComValue("tipo", "REC");
 		page.escrever("data_transacao", "07/06/2022");
 		page.escrever("data_pagamento", "20/06/2022");
 		page.escrever("descricao", "Descrição primeiro movimento");
 		page.escrever("interessado", "Pessoa interessada");
 		page.escrever("valor", "1000");
 		page.pegarSelectComText("conta", "Conta Movimentação");
-		page.clicarElemento("status_pendente");
+		page.clicarElemento("status_pago");
 		page.clicarComXpath("//button[.='Salvar']");
 		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), "Movimentação adicionada com sucesso!");
 		pageConta.removerConta("Conta Movimentação");
@@ -108,5 +107,31 @@ public class MovimentacaoTest extends BaseTest {
 	public void validar_tela_resumo() {
 		page.acessarPaginaResumo();
 		Assert.assertEquals(page.pegarValueXpath("//input[@type='submit']"), "Buscar");
+	}
+	
+	// Em andamento
+	@Test
+	public void validar_saldo_conta() {
+		pageConta.acessarPaginaAdicionar();
+		pageConta.inserirConta("Conta Movimentação");
+		int valor = 1000;
+		for(int i = 0; i <= 2; i++) {
+			page.acessarPaginaMovimentacao();
+			page.pegarSelectComValue("tipo", "REC");
+			page.escrever("data_transacao", "07/06/2022");
+			page.escrever("data_pagamento", "20/06/2022");
+			page.escrever("descricao", "Descrição primeiro movimento");
+			page.escrever("interessado", "Pessoa interessada");
+			page.escrever("valor", Integer.toString(valor+i));
+			page.pegarSelectComText("conta", "Conta Movimentação");
+			page.clicarElemento("status_pago");
+			page.clicarComXpath("//button[.='Salvar']");
+		}
+		page.clicarComXpath("//li[.='Home']");
+		Assert.assertEquals(page.pegarTextoXpath("//tr[td='Conta Movimentação']//td[2]"), "3003.00");
+//		for(int i = 0; i <= 2; i++) {
+//			page.acessarPaginaResumo();
+//			page.excluirMovimentacao("Descrição movimento", "Conta Movimentação");
+//		}
 	}
 }

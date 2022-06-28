@@ -35,6 +35,11 @@ public class BasePage {
 	public String pegarTexto(String id_campo) {
 		return getDriver().findElement(By.id(id_campo)).getText();
 	}
+	
+	public String pegarTextoXpath(String xpath) {
+		return getDriver().findElement(By.xpath(xpath)).getText();
+	}
+	
 	public String pegarTextoBy(By by) {
 		return getDriver().findElement(by).getText();
 	}
