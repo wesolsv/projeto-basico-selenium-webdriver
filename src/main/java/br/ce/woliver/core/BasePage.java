@@ -169,4 +169,9 @@ public class BasePage {
 
 		return getDriver().findElement(xpath).getText();
 	}
+	
+	public String returnUrl() {
+		String url = getDriver().getCurrentUrl();
+		return url;
+	}
 }

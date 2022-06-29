@@ -36,4 +36,17 @@ public class MovimentacaoPage extends BasePage {
 		acessarPaginaListar();
 		clicarComXpath("//tr[td='" + nomeConta + "']//a[2]");
 	}
+	
+	public void criarMovimento(String tipo, String dtTransacao, String dtPag, String desc, String pessoaInt, String valor, String conta,String status) {
+		acessarPaginaMovimentacao();
+		pegarSelectComValue("tipo", tipo);
+		escrever("data_transacao", dtTransacao);
+		escrever("data_pagamento", dtPag);
+		escrever("descricao", desc);
+		escrever("interessado", pessoaInt);
+		escrever("valor", valor);
+		pegarSelectComText("conta", conta);
+		clicarElemento(status);
+		clicarComXpath("//button[.='Salvar']");
+	}
 }	

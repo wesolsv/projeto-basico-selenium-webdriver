@@ -16,21 +16,15 @@ public class MovimentacaoTest extends BaseTest {
 	@Test
 	public void inserir_movimentacao() {
 		pageConta.acessarPaginaAdicionar();
-		pageConta.inserirConta("Conta Movimentação");
+		pageConta.inserirConta("Conta Mov");
 		page.acessarPaginaMovimentacao();
-		page.pegarSelectComValue("tipo", "REC");
-		page.escrever("data_transacao", "07/06/2022");
-		page.escrever("data_pagamento", "20/06/2022");
-		page.escrever("descricao", "Descrição primeiro movimento");
-		page.escrever("interessado", "Pessoa interessada");
-		page.escrever("valor", "1000");
-		page.pegarSelectComText("conta", "Conta Movimentação");
-		page.clicarElemento("status_pago");
-		page.clicarComXpath("//button[.='Salvar']");
-		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), "Movimentação adicionada com sucesso!");
-		pageConta.removerConta("Conta Movimentação");
+		page.criarMovimento("REC", "07/06/2022", "20/06/2022", "desc movimento", 
+				"Pessoa interessada", "1000", "Conta Mov", "status_pago");
+		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), 
+				"Movimentação adicionada com sucesso!");
 		page.acessarPaginaResumo();
-		page.excluirMovimentacao("Descrição primeiro movimento", "Conta Movimentação");
+		page.excluirMovimentacao("desc movimento", "Conta Mov");
+		pageConta.removerConta("Conta Mov");
 	}
 	
 	@Test
@@ -49,19 +43,13 @@ public class MovimentacaoTest extends BaseTest {
 	@Test
 	public void validar_movimentacao_futura() {
 		pageConta.acessarPaginaAdicionar();
-		pageConta.inserirConta("Conta Movimentação");
+		pageConta.inserirConta("Account");
 		page.acessarPaginaMovimentacao();
-		page.pegarSelectComValue("tipo", "DESP");
-		page.escrever("data_transacao", "01/01/2028");
-		page.escrever("data_pagamento", "01/01/2029");
-		page.escrever("descricao", "Descrição primeiro movimento");
-		page.escrever("interessado", "Pessoa interessada");
-		page.escrever("valor", "1000");
-		page.pegarSelectComText("conta", "Conta Movimentação");
-		page.clicarElemento("status_pago");
-		page.clicarComXpath("//button[.='Salvar']");
-		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), "Data da Movimentação deve ser menor ou igual à data atual");
-		pageConta.removerConta("Conta Movimentação");
+		page.criarMovimento("DESP", "01/01/2028", "01/01/2029", "desc movi", 
+				"Pessoa", "1000", "Account", "status_pago");
+		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), 
+				"Data da Movimentação deve ser menor ou igual à data atual");
+		pageConta.removerConta("Account");
 	}
 	
 	@Test
@@ -69,44 +57,31 @@ public class MovimentacaoTest extends BaseTest {
 		pageConta.acessarPaginaAdicionar();
 		pageConta.inserirConta("Conta Movimentação");
 		page.acessarPaginaMovimentacao();
-		page.pegarSelectComValue("tipo", "DESP");
-		page.escrever("data_transacao", "07/06/2022");
-		page.escrever("data_pagamento", "20/06/2022");
-		page.escrever("descricao", "Descrição aleatoria movimento");
-		page.escrever("interessado", "Pessoa interessada");
-		page.escrever("valor", "1000");
-		page.pegarSelectComText("conta", "Conta Movimentação");
-		page.clicarElemento("status_pago");
-		page.clicarComXpath("//button[.='Salvar']");
+		page.criarMovimento("DESP", "07/06/2022", "20/06/2022", "aleatoria", 
+				"Pessoa", "1000", "Conta Movimentação", "status_pago");
 		pageConta.removerConta("Conta Movimentação");
 		Assert.assertEquals(page.pegarTextoBy(By.xpath("//div[@role='alert']")), "Conta em uso na movimentações");
 		page.acessarPaginaResumo();
-		page.excluirMovimentacao("Descrição aleatoria movimento", "Conta Movimentação");
+		page.excluirMovimentacao("aleatoria", "Conta Movimentação");
 		pageConta.removerConta("Conta Movimentação");
 	}
 	
 	@Test
 	public void remover_movimentacao() {
 		pageConta.acessarPaginaAdicionar();
-		pageConta.inserirConta("Conta Movimentação");
+		pageConta.inserirConta("account alexa");
 		page.acessarPaginaMovimentacao();
-		page.pegarSelectComValue("tipo", "DESP");
-		page.escrever("data_transacao", "07/06/2022");
-		page.escrever("data_pagamento", "20/06/2022");
-		page.escrever("descricao", "Descrição movimento");
-		page.escrever("interessado", "Pessoa interessada");
-		page.escrever("valor", "1000");
-		page.pegarSelectComText("conta", "Conta Movimentação");
-		page.clicarElemento("status_pago");
-		page.clicarComXpath("//button[.='Salvar']");
+		page.criarMovimento("DESP", "07/06/2022", "20/06/2022", "alexa", 
+				"Pessoa", "1000", "account alexa", "status_pago");
 		page.acessarPaginaResumo();
-		page.excluirMovimentacao("Descrição movimento", "Conta Movimentação");
+		page.excluirMovimentacao("alexa", "account alexa");
+		pageConta.removerConta("account alexa");
 	}
 	
 	@Test
 	public void validar_tela_resumo() {
 		page.acessarPaginaResumo();
-		Assert.assertEquals(page.pegarValueXpath("//input[@type='submit']"), "Buscar");
+		Assert.assertEquals(page.returnUrl(), "https://seubarriga.wcaquino.me/extrato");
 	}
 	
 	@Test
@@ -116,21 +91,14 @@ public class MovimentacaoTest extends BaseTest {
 		int valor = 1000;
 		for(int i = 0; i <= 2; i++) {
 			page.acessarPaginaMovimentacao();
-			page.pegarSelectComValue("tipo", "REC");
-			page.escrever("data_transacao", "07/06/2022");
-			page.escrever("data_pagamento", "20/06/2022");
-			page.escrever("descricao", "Descrição primeiro movimento");
-			page.escrever("interessado", "Pessoa interessada");
-			page.escrever("valor", Integer.toString(valor+i));
-			page.pegarSelectComText("conta", "Conta Movimentação");
-			page.clicarElemento("status_pago");
-			page.clicarComXpath("//button[.='Salvar']");
+			page.criarMovimento("REC", "07/06/2022", "20/06/2022", "desc al", 
+					"abcde", Integer.toString(valor+i), "Conta Movimentação", "status_pago");
 		}
 		page.clicarComXpath("//li[.='Home']");
 		Assert.assertEquals(page.pegarTextoXpath("//tr[td='Conta Movimentação']//td[2]"), "3003.00");
 		for(int i = 0; i <= 2; i++) {
 			page.acessarPaginaResumo();
-			page.excluirMovimentacao("Descrição primeiro movimento", "Conta Movimentação");
+			page.excluirMovimentacao("desc al", "Conta Movimentação");
 		}
 		pageConta.removerConta("Conta Movimentação");
 	}
