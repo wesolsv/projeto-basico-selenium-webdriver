@@ -48,6 +48,10 @@ public class BasePage {
 		getDriver().findElement(By.id(id)).click();
 	}
 	
+	public void clicarLink(String nome) {
+		getDriver().findElement(By.xpath("//a[.='" + nome +"']")).click();
+	}
+	
 	public void clicarComXpath(String xpath) {
 		getDriver().findElement(By.xpath(xpath)).click();
 	}

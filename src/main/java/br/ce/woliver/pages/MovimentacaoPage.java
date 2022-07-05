@@ -1,44 +1,26 @@
 package br.ce.woliver.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import static br.ce.woliver.core.DriverFactory.getDriver;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.ce.woliver.core.BasePage;
 
 public class MovimentacaoPage extends BasePage {
 	
-	public void acessarPaginaMovimentacao() {
-		clicarComXpath("//a[.='Criar Movimentação']");
-	}
-	
-	public void acessarPaginaListar() {
-		clicarComXpath("//a[@data-toggle='dropdown' and @role='button']");
-		clicarComXpath("//a[.='Listar']");
-	}
-	
-	public void acessarPaginaResumo() {
-		clicarComXpath("//a[.='Resumo Mensal']");
-	}
+	private MenuPage menuPage = new MenuPage();
 	
 	public void inserirConta(String nomeConta) {
 		escrever("nome", nomeConta);
 		clicarComXpath("//button[.='Salvar']");
 	}
 	
-	public void excluirMovimentacao(String desc, String conta) {
-		clicarComXpath("//tr[td='" + desc + "'and td='" + conta + "']//a");
-	}
-	
-	public void alterarConta(String novoNome) {
-		acessarPaginaListar();
-		clicarComXpath("//tr[td='Conta Inserida']//a[1]");
-		inserirConta(novoNome);
-	}
-	
-	public void removerConta(String nomeConta) {
-		acessarPaginaListar();
-		clicarComXpath("//tr[td='" + nomeConta + "']//a[2]");
-	}
-	
 	public void criarMovimento(String tipo, String dtTransacao, String dtPag, String desc, String pessoaInt, String valor, String conta,String status) {
-		acessarPaginaMovimentacao();
+		menuPage.acessarPaginaMovimentacao();
 		pegarSelectComValue("tipo", tipo);
 		escrever("data_transacao", dtTransacao);
 		escrever("data_pagamento", dtPag);
@@ -47,6 +29,24 @@ public class MovimentacaoPage extends BasePage {
 		escrever("valor", valor);
 		pegarSelectComText("conta", conta);
 		clicarElemento(status);
+		salvarMovimento();
+	}
+	
+	public void salvarMovimento() {
 		clicarComXpath("//button[.='Salvar']");
+	}
+	public String mensagemSucesso() {
+		return pegarTextoBy(By.xpath("//div[@role='alert']"));
+	}
+	
+	public List<String> obterErros(){
+		List<WebElement> erros = getDriver().findElements(By.xpath("//div[@class='alert alert-danger']//li"));
+		List<String> retorno = new ArrayList<String>();
+		
+		for(WebElement erro: erros) {
+			retorno.add(erro.getText());
+		}
+		
+		return retorno;
 	}
 }	

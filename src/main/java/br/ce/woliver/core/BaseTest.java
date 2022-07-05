@@ -5,7 +5,6 @@ import static br.ce.woliver.core.DriverFactory.killDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;

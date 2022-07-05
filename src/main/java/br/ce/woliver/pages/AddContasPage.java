@@ -1,32 +1,29 @@
 package br.ce.woliver.pages;
 
+import org.openqa.selenium.By;
+import static br.ce.woliver.core.DriverFactory.getDriver;
 import br.ce.woliver.core.BasePage;
 
 public class AddContasPage extends BasePage {
 	
-	public void acessarPaginaAdicionar() {
-		clicarComXpath("//a[@data-toggle='dropdown' and @role='button']");
-		clicarComXpath("//a[.='Adicionar']");
-	}
-	
-	public void acessarPaginaListar() {
-		clicarComXpath("//a[@data-toggle='dropdown' and @role='button']");
-		clicarComXpath("//a[.='Listar']");
-	}
+	private MenuPage menuPage = new MenuPage();
 	
 	public void inserirConta(String nomeConta) {
 		escrever("nome", nomeConta);
 		clicarComXpath("//button[.='Salvar']");
 	}
 	
-	public void alterarConta(String novoNome) {
-		acessarPaginaListar();
-		clicarComXpath("//tr[td='Conta Inserida']//a[1]");
+	public void alterarConta(String nomeAntigo, String novoNome) {
+		clicarComXpath("//tr[td='"+nomeAntigo+"']//span[@class='glyphicon glyphicon-edit']");
 		inserirConta(novoNome);
 	}
 	
 	public void removerConta(String nomeConta) {
-		acessarPaginaListar();
-		clicarComXpath("//tr[td='" + nomeConta + "']//a[2]");
+		menuPage.acessarPaginaListar();
+		clicarComXpath("//tr[td='" + nomeConta + "']//span[@class='glyphicon glyphicon-remove-circle']");
+	}
+	
+	public String mensagemSucesso() {
+		return pegarTextoBy(By.xpath("//div[@role='alert']"));
 	}
 }	
