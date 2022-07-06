@@ -12,15 +12,19 @@ import br.ce.woliver.core.BasePage;
 
 public class MovimentacaoPage extends BasePage {
 	
-	private MenuPage menuPage = new MenuPage();
-	
-	public void inserirConta(String nomeConta) {
-		escrever("nome", nomeConta);
-		clicarComXpath("//button[.='Salvar']");
+	public void inserirVariosMovimentos(String tipo,String desc,String pessoaInt, int valor, String conta,String status) {
+
+		for (int i = 0; i <= 2; i++) {
+			criarMovimento("REC", obterData(), obterData(), "desc al", "abcde",
+					Integer.toString(valor + i), "Conta Movimentação", "status_pago");
+		}
+		clicarLink("Home");
 	}
 	
-	public void criarMovimento(String tipo, String dtTransacao, String dtPag, String desc, String pessoaInt, String valor, String conta,String status) {
-		menuPage.acessarPaginaMovimentacao();
+	
+	public void criarMovimento(String tipo, String dtTransacao, String dtPag, String desc, 
+			String pessoaInt, String valor, String conta,String status) {
+		clicarLink("Criar Movimentação");
 		pegarSelectComValue("tipo", tipo);
 		escrever("data_transacao", dtTransacao);
 		escrever("data_pagamento", dtPag);
@@ -29,14 +33,11 @@ public class MovimentacaoPage extends BasePage {
 		escrever("valor", valor);
 		pegarSelectComText("conta", conta);
 		clicarElemento(status);
-		salvarMovimento();
+		clicarComXpath("//button[.='Salvar']");
 	}
 	
 	public void salvarMovimento() {
 		clicarComXpath("//button[.='Salvar']");
-	}
-	public String mensagemSucesso() {
-		return pegarTextoBy(By.xpath("//div[@role='alert']"));
 	}
 	
 	public List<String> obterErros(){

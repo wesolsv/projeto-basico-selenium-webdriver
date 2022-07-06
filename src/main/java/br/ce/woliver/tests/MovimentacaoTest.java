@@ -20,13 +20,10 @@ public class MovimentacaoTest extends BaseTest {
 	
 	@Test
 	public void inserir_movimentacao() {
-		menuPage.acessarPaginaAdicionar();
 		pageConta.inserirConta("Conta Mov");
-		menuPage.acessarPaginaMovimentacao();
 		movPage.criarMovimento("REC", movPage.obterData(), movPage.obterData(), "desc movimento", 
 				"Pessoa interessada", "1000", "Conta Mov", "status_pago");
 		Assert.assertEquals(movPage.mensagemSucesso(), "Movimentação adicionada com sucesso!");
-		menuPage.acessarPaginaResumo();
 		resumoPage.excluirMovimentacao("desc movimento", "Conta Mov");
 		pageConta.removerConta("Conta Mov");
 	}
@@ -47,9 +44,7 @@ public class MovimentacaoTest extends BaseTest {
 	
 	@Test
 	public void validar_movimentacao_futura() {
-		menuPage.acessarPaginaAdicionar();
 		pageConta.inserirConta("Account");
-		menuPage.acessarPaginaMovimentacao();
 		movPage.criarMovimento("DESP", "01/01/2038", "01/01/2039", "desc movi", 
 				"Pessoa", "1000", "Account", "status_pago");
 		Assert.assertEquals(movPage.mensagemSucesso(), "Data da Movimentação deve ser menor ou igual à data atual");

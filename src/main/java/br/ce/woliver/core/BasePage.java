@@ -189,4 +189,11 @@ public class BasePage {
 		String url = getDriver().getCurrentUrl();
 		return url;
 	}
+	
+	//===================Seu barriga funções ========================//
+	
+	public String mensagemSucesso() {
+		return pegarTextoBy(By.xpath("//div[@role='alert']"));
+	}	
+	
 }

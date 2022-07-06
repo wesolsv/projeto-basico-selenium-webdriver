@@ -19,9 +19,7 @@ public class ResumoTest extends BaseTest {
 
 	@Test
 	public void remover_conta_com_movimentacao() {
-		menuPage.acessarPaginaAdicionar();
 		pageConta.inserirConta("Conta Movimentação");
-		menuPage.acessarPaginaMovimentacao();
 		movPage.criarMovimento("DESP", resumoPage.obterData(),  resumoPage.obterData(), 
 				"aleatoria", "Pessoa", "1000", "Conta Movimentação", "status_pago");
 		pageConta.removerConta("Conta Movimentação");
@@ -33,9 +31,7 @@ public class ResumoTest extends BaseTest {
 
 	@Test
 	public void remover_movimentacao() {
-		menuPage.acessarPaginaAdicionar();
 		pageConta.inserirConta("account alexa");
-		menuPage.acessarPaginaMovimentacao();
 		movPage.criarMovimento("DESP", resumoPage.obterData(),  resumoPage.obterData(), 
 				"alexa", "Pessoa", "1000", "account alexa", "status_pago");
 		menuPage.acessarPaginaResumo();
