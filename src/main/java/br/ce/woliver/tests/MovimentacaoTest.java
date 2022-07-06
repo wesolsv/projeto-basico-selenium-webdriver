@@ -23,7 +23,7 @@ public class MovimentacaoTest extends BaseTest {
 		menuPage.acessarPaginaAdicionar();
 		pageConta.inserirConta("Conta Mov");
 		menuPage.acessarPaginaMovimentacao();
-		movPage.criarMovimento("REC", "05/07/2022", "20/07/2022", "desc movimento", 
+		movPage.criarMovimento("REC", movPage.obterData(), movPage.obterData(), "desc movimento", 
 				"Pessoa interessada", "1000", "Conta Mov", "status_pago");
 		Assert.assertEquals(movPage.mensagemSucesso(), "Movimentação adicionada com sucesso!");
 		menuPage.acessarPaginaResumo();
@@ -56,28 +56,4 @@ public class MovimentacaoTest extends BaseTest {
 		pageConta.removerConta("Account");
 	}
 	
-	@Test
-	public void validar_tela_resumo() {
-		menuPage.acessarPaginaResumo();
-		Assert.assertEquals(movPage.returnUrl(), "https://seubarriga.wcaquino.me/extrato");
-	}
-	
-	@Test
-	public void validar_saldo_conta() {
-		menuPage.acessarPaginaAdicionar();
-		pageConta.inserirConta("Conta Movimentação");
-		int valor = 1000;
-		for(int i = 0; i <= 2; i++) {
-			menuPage.acessarPaginaMovimentacao();
-			movPage.criarMovimento("REC", "05/07/2022", "20/07/2022", "desc al", 
-					"abcde", Integer.toString(valor+i), "Conta Movimentação", "status_pago");
-		}
-		movPage.clicarComXpath("//li[.='Home']");
-		Assert.assertEquals(movPage.pegarTextoXpath("//tr[td='Conta Movimentação']//td[2]"), "3003.00");
-		for(int i = 0; i <= 2; i++) {
-			menuPage.acessarPaginaResumo();
-			resumoPage.excluirMovimentacao("desc al", "Conta Movimentação");
-		}
-		pageConta.removerConta("Conta Movimentação");
-	}
 }

@@ -2,6 +2,8 @@ package br.ce.woliver.core;
 
 import static br.ce.woliver.core.DriverFactory.getDriver;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -18,6 +20,15 @@ public class BasePage {
 		getDriver().findElement(By.id(id_campo)).clear();
 		getDriver().findElement(By.id(id_campo)).sendKeys(texto);
 	}
+	
+	public String obterData() {
+		Date data = new Date();
+		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+		String dataFormatada = formatador.format(data);
+		
+		return dataFormatada;
+	}
+	
 	
 	public void escreverBy(By by, String texto) {
 		getDriver().findElement(by).clear();

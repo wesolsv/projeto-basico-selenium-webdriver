@@ -21,4 +21,8 @@ public class MenuPage extends BasePage {
 	public void acessarPaginaResumo() {
 		clicarLink("Resumo Mensal");
 	}
+	
+	public void acessarHomePage() {
+		clicarLink("Home");
+	}
 }
