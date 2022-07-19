@@ -1,0 +1,17 @@
+br\ce\woliver\suites\SuiteGeral.class
+br\ce\woliver\core\Propriedades.class
+br\ce\woliver\core\DriverFactory.class
+br\ce\woliver\pages\LoginPage.class
+br\ce\woliver\tests\ContaTest.class
+br\ce\woliver\pages\ResumoPage.class
+br\ce\woliver\pages\HomePage.class
+br\ce\woliver\pages\MovimentacaoPage.class
+br\ce\woliver\pages\AddContasPage.class
+br\ce\woliver\core\BasePage.class
+br\ce\woliver\core\BaseTest.class
+br\ce\woliver\core\DriverFactory$1.class
+br\ce\woliver\tests\SaldoTest.class
+br\ce\woliver\pages\MenuPage.class
+br\ce\woliver\tests\MovimentacaoTest.class
+br\ce\woliver\core\Propriedades$Browsers.class
+br\ce\woliver\tests\ResumoTest.class
