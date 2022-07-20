@@ -1,6 +1,7 @@
 br\ce\woliver\suites\SuiteGeral.class
 br\ce\woliver\core\Propriedades.class
 br\ce\woliver\core\DriverFactory.class
+br\ce\woliver\core\DriverFactory$2.class
 br\ce\woliver\pages\LoginPage.class
 br\ce\woliver\tests\ContaTest.class
 br\ce\woliver\pages\ResumoPage.class

@@ -12,31 +12,31 @@ public class ContaTest extends BaseTest {
 	
 	@Test
 	public void inserir_conta() {
-		page.inserirConta("Conta Inserida");
+		page.inserirConta("Conta T Inserir");
 		Assert.assertEquals(page.mensagemSucesso(), "Conta adicionada com sucesso!");
-		page.removerConta("Conta Inserida");
+		page.removerConta("Conta T Inserir");
 	}
 	
 	@Test
 	public void alterar_conta() {
-		page.inserirConta("Conta Inserida");
-		page.alterarConta("Conta Inserida", "Conta Alterada");
+		page.inserirConta("Conta T Alterar");
+		page.alterarConta("Conta T Alterar", "Conta Alterada");
 		Assert.assertEquals(page.mensagemSucesso(), "Conta alterada com sucesso!");
 		page.removerConta("Conta Alterada");
 	}
 	
 	@Test
 	public void inserir_conta_com_mesmo_nome() {
-		page.inserirConta("Conta Inserida");
-		page.inserirConta("Conta Inserida");
+		page.inserirConta("Conta T Mesmo Nome");
+		page.inserirConta("Conta T Mesmo Nome");
 		Assert.assertEquals(page.mensagemSucesso(), "Já existe uma conta com esse nome!");
-		page.removerConta("Conta Inserida");
+		page.removerConta("Conta T Mesmo Nome");
 	}
 	
 	@Test
 	public void remover_conta() {
-		page.inserirConta("Conta Inserida");
-		page.removerConta("Conta Inserida");
+		page.inserirConta("Conta T Remover");
+		page.removerConta("Conta T Remover");
 		Assert.assertEquals(page.mensagemSucesso(), "Conta removida com sucesso!");
 	}
 }

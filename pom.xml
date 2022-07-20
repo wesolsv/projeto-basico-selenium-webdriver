@@ -16,7 +16,7 @@
 						<include>br/ce/woliver/suites/*.java</include>
 					</includes>
 					<parallel>all</parallel>
-					<threadCount>2</threadCount>	
+					<threadCount>3</threadCount>	
 				</configuration>
 			</plugin>
 		</plugins>

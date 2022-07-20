@@ -7,4 +7,9 @@ public class ResumoPage extends BasePage {
 		clicarLink("Resumo Mensal");
 		clicarComXpath("//tr[td='" + desc + "'and td='" + conta + "']//span[@class='glyphicon glyphicon-remove-circle']");
 	}
+	
+	public void selecionarAno(String anoData) {
+		pegarSelectComText("ano", anoData);
+		clicarComXpath("//input[@value='Buscar']");
+	}
 }

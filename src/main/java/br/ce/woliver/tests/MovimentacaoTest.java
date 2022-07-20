@@ -20,12 +20,12 @@ public class MovimentacaoTest extends BaseTest {
 	
 	@Test
 	public void inserir_movimentacao() {
-		pageConta.inserirConta("Conta Mov");
+		pageConta.inserirConta("Conta T Inserir Mov");
 		movPage.criarMovimento("REC", movPage.obterData(), movPage.obterData(), "desc movimento", 
-				"Pessoa interessada", "1000", "Conta Mov", "status_pago");
+				"Pessoa interessada", "1000", "Conta T Inserir Mov", "status_pago");
 		Assert.assertEquals(movPage.mensagemSucesso(), "Movimentação adicionada com sucesso!");
-		resumoPage.excluirMovimentacao("desc movimento", "Conta Mov");
-		pageConta.removerConta("Conta Mov");
+		resumoPage.excluirMovimentacao("desc movimento", "Conta T Inserir Mov");
+		pageConta.removerConta("Conta T Inserir Mov");
 	}
 	
 	@Test
@@ -37,18 +37,18 @@ public class MovimentacaoTest extends BaseTest {
 		Assert.assertTrue(erros.containsAll(Arrays.asList(
 				"Data da Movimentação é obrigatório", "Data do pagamento é obrigatório",
 				"Descrição é obrigatório", "Interessado é obrigatório",
-				"Valor é obrigatório", "Valor deve ser um número"
+				"Valor é obrigatório", "Valor deve ser um número", "Conta é obrigatório"
 				)));
-		Assert.assertEquals(6, erros.size());
+		Assert.assertEquals(7, erros.size());
 		}
 	
 	@Test
 	public void validar_movimentacao_futura() {
-		pageConta.inserirConta("Account");
+		pageConta.inserirConta("Conta T Mov Futura");
 		movPage.criarMovimento("DESP", "01/01/2038", "01/01/2039", "desc movi", 
-				"Pessoa", "1000", "Account", "status_pago");
+				"Pessoa", "1000", "Conta T Mov Futura", "status_pago");
 		Assert.assertEquals(movPage.mensagemSucesso(), "Data da Movimentação deve ser menor ou igual à data atual");
-		pageConta.removerConta("Account");
+		pageConta.removerConta("Conta T Mov Futura");
 	}
 	
 }

@@ -21,6 +21,7 @@ public class AddContasPage extends BasePage {
 	
 	public void removerConta(String nomeConta) {
 		menuPage.acessarPaginaListar();
-		clicarComXpath("//tr[td='" + nomeConta + "']//span[@class='glyphicon glyphicon-remove-circle']");
+		System.out.println("//tr[td='"+nomeConta+"']//span[@class='glyphicon glyphicon-remove-circle']");
+		clicarComXpath("//tr[td='"+nomeConta+"']//span[@class='glyphicon glyphicon-remove-circle']");
 	}
 }	

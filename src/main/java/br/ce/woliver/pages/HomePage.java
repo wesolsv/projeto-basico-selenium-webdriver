@@ -16,11 +16,11 @@ public class HomePage extends BasePage {
 		}
 	}
 	
-	public void apagarContaEMovimento() {
+	public void apagarContaEMovimento(String conta) {
 		for (int i = 0; i <= 2; i++) {
-			resumoPage.excluirMovimentacao("desc al", "Conta Movimentação");
+			resumoPage.excluirMovimentacao("desc al", conta);
 		}
-		pageConta.removerConta("Conta Movimentação");
+		pageConta.removerConta(conta);
 	}
 
 }

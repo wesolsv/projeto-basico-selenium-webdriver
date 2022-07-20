@@ -16,9 +16,8 @@ public class MovimentacaoPage extends BasePage {
 
 		for (int i = 0; i <= 2; i++) {
 			criarMovimento("REC", obterData(), obterData(), "desc al", "abcde",
-					Integer.toString(valor + i), "Conta Movimentação", "status_pago");
+					Integer.toString(valor + i), conta, "status_pago");
 		}
-		clicarLink("Home");
 	}
 	
 	
