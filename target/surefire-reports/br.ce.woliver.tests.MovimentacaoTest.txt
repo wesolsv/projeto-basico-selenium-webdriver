@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.ce.woliver.tests.MovimentacaoTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.748 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.129 sec
