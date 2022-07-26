@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="br.ce.woliver.tests.ContaTest" time="34.42" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="br.ce.woliver.tests.ContaTest" time="32.455" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -46,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_201\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -65,8 +65,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.ce.woliver.tests.ContaTest" name="inserir_conta_com_mesmo_nome" time="10.367"/>
-  <testcase classname="br.ce.woliver.tests.ContaTest" name="alterar_conta" time="8.873"/>
-  <testcase classname="br.ce.woliver.tests.ContaTest" name="remover_conta" time="7.696"/>
-  <testcase classname="br.ce.woliver.tests.ContaTest" name="inserir_conta" time="7.484"/>
+  <testcase classname="br.ce.woliver.tests.ContaTest" name="inserir_conta_com_mesmo_nome" time="8.881"/>
+  <testcase classname="br.ce.woliver.tests.ContaTest" name="alterar_conta" time="10.737"/>
+  <testcase classname="br.ce.woliver.tests.ContaTest" name="remover_conta" time="6.409"/>
+  <testcase classname="br.ce.woliver.tests.ContaTest" name="inserir_conta" time="6.428"/>
 </testsuite>

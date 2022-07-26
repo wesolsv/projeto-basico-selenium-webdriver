@@ -21,8 +21,8 @@ public class DriverFactory {
 		}
 	};
 
-	private DriverFactory() {
-	}
+//	private DriverFactory() {
+//	}
 
 	public static WebDriver getDriver() {
 		return threadDriver.get();
